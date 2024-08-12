@@ -12,6 +12,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  hikari:
+    maximum-pool-size: 5
+    minimum-idle: 5
+    connection-timeout: 30000  # 30 seconds
+
 
 
 #oauth
