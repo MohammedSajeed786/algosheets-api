@@ -35,8 +35,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
                 if (jwtService.isTokenValid(token)) {
                     // Extract userId from the token and validate it
-                    String userIdString = jwtService.extractUserId(token);
-                    UUID userId = UUID.fromString(userIdString);
+                    String userId = jwtService.extractUserId(token);
                     AuthContext.setContext(userId);
                     return true;
                 } else {

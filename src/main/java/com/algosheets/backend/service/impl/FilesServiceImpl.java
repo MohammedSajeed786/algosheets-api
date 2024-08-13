@@ -10,7 +10,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
-import org.hibernate.query.sqm.ParsingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +42,7 @@ public class FilesServiceImpl implements FilesService {
     }
 
     @Override
-    public List<Problem> getProblemsFromFile(String fileId) {
+    public List<Problem> getProblemsFromFile(String fileId) throws IOException {
         //fetch access token
         String accessToken = authService.getAccessToken();
 
@@ -53,7 +52,7 @@ public class FilesServiceImpl implements FilesService {
         return parseCsvContent(fileContent);
     }
 
-    private List<Problem> parseCsvContent(String content) {
+    private List<Problem> parseCsvContent(String content) throws IOException {
         List<Problem> problems = new ArrayList<>();
         try (Reader reader = new StringReader(content);
              CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.builder().setHeader().build())) {
@@ -76,7 +75,7 @@ public class FilesServiceImpl implements FilesService {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new ParsingException("exception in parsing file "+e.getMessage());
+            throw new IOException("exception in parsing file "+e.getMessage());
         }
         return problems;
 

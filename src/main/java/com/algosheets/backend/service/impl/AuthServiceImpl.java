@@ -63,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
         return generateJwtToken(userProfile, auth.getUserId());
     }
 
-    private String generateJwtToken(UserProfile userProfile, UUID userId) {
+    private String generateJwtToken(UserProfile userProfile, String userId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("email", userProfile.getEmailAddresses().get(0).getValue());
         claims.put("name", userProfile.getNames().get(0).getDisplayName());
@@ -99,13 +99,13 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Optional<Auth> findAuthByUserId(UUID uuid) {
+    public Optional<Auth> findAuthByUserId(String uuid) {
         return authRepository.findByUserId(uuid);
     }
 
     @Override
     public String getAccessToken(){
-        UUID userId=AuthContext.getContext();
+        String userId=AuthContext.getContext();
         return authRepository.findByUserId(userId).get().getAccessToken();
     }
 }

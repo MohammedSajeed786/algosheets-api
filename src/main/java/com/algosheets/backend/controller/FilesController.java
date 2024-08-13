@@ -33,7 +33,7 @@ public class FilesController {
     }
 
     @GetMapping("{fileId}")
-    ResponseEntity<Map<String, List<Problem>>> getFileContent(@PathVariable String fileId) {
+    ResponseEntity<Map<String, List<Problem>>> getFileContent(@PathVariable String fileId) throws IOException {
 
         Map<String, List<Problem>> response = new HashMap<>();
         response.put("problems", filesRequestProcessor.getProblemsFromFile(fileId));

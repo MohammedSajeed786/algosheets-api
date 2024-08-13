@@ -21,7 +21,7 @@ public class FilesRequestProcessorImpl implements FilesRequestProcessor {
         return filesService.getAllFiles();
     }
     @Override
-    public List<Problem> getProblemsFromFile(String fileId) {
+    public List<Problem> getProblemsFromFile(String fileId) throws IOException {
         return filesService.getProblemsFromFile(fileId);
     }
 

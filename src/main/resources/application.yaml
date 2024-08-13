@@ -3,19 +3,11 @@
 
 #db
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://AlgoSheets_wavebagcan:54492177ac9861a75e6f559d520382aabcc3b0a8@s5d.h.filess.io:3306/AlgoSheets_wavebagcan
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-  hikari:
-    maximum-pool-size: 5
-    minimum-idle: 5
-    connection-timeout: 30000  # 30 seconds
+  data:
+    mongodb:
+      uri: ${DB_URL}
+      database: algosheets
+
 
 
 

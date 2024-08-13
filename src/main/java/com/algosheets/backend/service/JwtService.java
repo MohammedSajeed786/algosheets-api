@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public interface JwtService {
 
-    String generateToken(Map<String, Object> extraClaims, UUID userId);
+    String generateToken(Map<String, Object> extraClaims, String userId);
 
-    String generateToken(UUID userId);
+    String generateToken(String userId);
 
     String extractUserId(String jwtToken);
 

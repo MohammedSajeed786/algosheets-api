@@ -16,7 +16,7 @@ public interface AuthService {
 
     boolean isEmailExists(String email);
 
-    Optional<Auth> findAuthByUserId(UUID uuid);
+    Optional<Auth> findAuthByUserId(String uuid);
 
     String getAccessToken();
 }

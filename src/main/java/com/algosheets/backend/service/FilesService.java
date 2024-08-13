@@ -10,7 +10,7 @@ public interface FilesService {
 
     List<FileInfo> getAllFiles();
 
-    List<Problem> getProblemsFromFile(String fileId);
+    List<Problem> getProblemsFromFile(String fileId) throws IOException;
 
     void updateProblemsInCsv(String fileId, List<Problem> problems) throws IOException;
 }

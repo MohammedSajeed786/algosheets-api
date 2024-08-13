@@ -10,7 +10,7 @@ public interface FilesRequestProcessor {
 
     List<FileInfo> getAllFiles();
 
-    List<Problem> getProblemsFromFile(String fileId);
+    List<Problem> getProblemsFromFile(String fileId) throws IOException;
 
     void updateFileContent(String fileId, List<Problem> problems) throws IOException;
 }

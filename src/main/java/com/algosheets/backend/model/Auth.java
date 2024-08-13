@@ -1,10 +1,13 @@
 package com.algosheets.backend.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,14 +16,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(schema = "auth")
-@Entity
+@Document("auth")
 public class Auth {
 
     @Id
-    @GeneratedValue
-    private UUID userId;
-    @Column(unique = true)
+    private String userId;
+    @Indexed(unique = true)
     private String email;
     private String accessToken;
     private LocalDateTime tokenExpiry;

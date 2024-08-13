@@ -33,7 +33,7 @@ public class JwtServiceImpl implements JwtService {
 
 
     @Override
-    public String generateToken(Map<String, Object> extraClaims, UUID userId){
+    public String generateToken(Map<String, Object> extraClaims, String userId){
 //        System.out.println("hello "+SECRET_KEY);
 
         return Jwts
@@ -48,7 +48,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public String generateToken(UUID userId){
+    public String generateToken(String userId){
         return generateToken(new HashMap<>(),userId);
     }
 
@@ -85,11 +85,11 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public Boolean isTokenValid(String jwtToken){
-        UUID userId= UUID.fromString(extractUserId(jwtToken));
+        String userId= extractUserId(jwtToken);
         return !isTokenExpired(jwtToken) && isUserValid(userId);
     }
 
-    private boolean isUserValid(UUID userId) {
+    private boolean isUserValid(String userId) {
         if(authRepository.findByUserId(userId).isPresent()) return true;
         else throw new TokenException("invalid user");
     }

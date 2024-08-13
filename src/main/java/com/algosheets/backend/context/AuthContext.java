@@ -5,13 +5,13 @@ import java.util.UUID;
 
 public class AuthContext {
 
-    public static final ThreadLocal<UUID> context=new ThreadLocal<>();
+    public static final ThreadLocal<String> context=new ThreadLocal<>();
 
-    public static void setContext(UUID userId) {
+    public static void setContext(String userId) {
         context.set(userId);
     }
 
-    public static UUID getContext() {
+    public static String getContext() {
         return context.get();
     }
 
